@@ -6,7 +6,7 @@
         <div class="row">         
             <div class="row">   
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                    <label for="cardNumber">Invoice Reference</label>
+                    <label for="invoiceReference">Invoice Reference</label>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <input type="text" class="form-control" id="invoiceReference" name="invoiceReference" value="{{invoice.invoice_reference}}" readonly=true/>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <table class="table">
+        <table id="invoice-line-item-table" class="table">
             <thead>
                 <tr>
                     <th scope="col">Product Name</th>

@@ -44,18 +44,18 @@
           {% if user.is_authenticated %}
             <li><a href="/">Home</a></li>
             <li>
-              <a class='dropdown-toggle' data-toggle='dropdown' href="#">Cards<span class="caret"></span></a>
+              <a id="card-menu-item-toggle" class='dropdown-toggle' data-toggle='dropdown' href="#">Cards<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                  <li><a href="/cards">View Cards</a></li>
-                  <li><a href="/cards/add">Add Card</a></li>
+                  <li><a id="view-cards-menu-item" href="/cards">View Cards</a></li>
+                  <li><a id="add-card-menu-item" href="/cards/add">Add Card</a></li>
               </ul>
             </li>
-            <li><a href='/invoices'>Invoices</a></li>
+            <li><a id="view-invoice-menu-item" href='/invoices'>Invoices</a></li>
             {% if user.is_admin %}
             <li>
               <a class='dropdown-toggle' data-toggle='dropdown' href="#">Admin<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                  <li><a href="/admin">View Users</a></li>
+                  <li><a id="admin-menu-item" href="/admin">View Users</a></li>
               </ul>
             </li>
             {% endif %}
@@ -79,16 +79,16 @@
         {% for c, m in messages %}
           {% if c == 'error' %}
             <div class="alert alert-danger alter-dismissable show" role="alert">
-              {{ m }}
+              <span name="display-message">{{ m }}</span>
               <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
+                <span name="close-display-message" aria-hidden="true">&times;</span>
               </button>
             </div>        
           {% elif c == 'success' %}
             <div class="alert alert-success alter-dismissable show" role="alert">
-              {{ m }}
+              <span name="display-message">{{ m }}</span>
               <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
+                <span name="close-display-message" aria-hidden="true">&times;</span>
               </button>
             </div>  
           {% endif %}

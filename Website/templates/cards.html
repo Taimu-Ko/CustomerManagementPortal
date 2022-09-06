@@ -6,7 +6,7 @@ View Cards
 <div class='row marginGap'>
     <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
         <h2>Card List</h2>
-        <table class="table">
+        <table id="card-table" class="table">
             <thead>
                 <tr>
                     <th scope="col">Card Number</th>
@@ -30,10 +30,10 @@ View Cards
                         </td>
                         <td>
                             <button type="button" onClick="viewCard({{c.id}}, 'N')"> 
-                                <span aria-hidden="true"><i class="fa-solid fa-magnifying-glass" title="View card details"></i></span>
+                                <span id="view-card" aria-hidden="true"><i class="fa-solid fa-magnifying-glass" title="View card details"></i></span>
                             </button>
                             <button type="button" onClick="deleteCard({{c.id}})"> 
-                                <span aria-hidden="true"><i class="fa-solid fa-trash" title="Delete card"></i></span>
+                                <span id="delete-card" aria-hidden="true"><i class="fa-solid fa-trash" title="Delete card"></i></span>
                             </button>
                         </td>   
                     </tr>

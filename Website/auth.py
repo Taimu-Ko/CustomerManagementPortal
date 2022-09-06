@@ -1,3 +1,4 @@
+import re
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, g
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -30,14 +31,14 @@ def login():
                         db.session.commit()
                         flash('Your username or password is incorrect.', category='error')
                 else:
-                    flash('Unable to log in. Your account is locked', category='error')
+                    flash('Unable to log in. Your account is locked.', category='error')
             else:
                 user.is_active = False
                 user.failed_login_attempts = 0
                 db.session.commit()
                 flash('Your account has been locked due to multiple failed login attempts. Please contact your administrator.', category='error')
         else:
-            flash('Your email or password is incorrect. Please try again', category='error')
+            flash('Your username or password is incorrect.', category='error')
     
     return render_template("login.html", user=current_user)
 
@@ -49,6 +50,8 @@ def logout():
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
+    email_regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+    password_regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,18}$"
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
@@ -60,16 +63,16 @@ def signup():
 
         if user:
             flash('This email is already registered to an account', category='error')
-        elif len(email) < 4:
-            flash('Email must be greater than 3 characters', category='error')
-        elif len(first_name) < 2:
-            flash('First Name must be greater than 1 characters', category='error')
-        elif len(surname) < 2:
-            flash('Surname must be greater than 1 characters', category='error')
+        elif not re.search(email_regex, email):
+            flash('Email does not match email pattern', category='error')
+        elif len(first_name) < 1:
+            flash('First Name cannot be empty', category='error')
+        elif len(surname) < 1:
+            flash('Surname cannot be empty', category='error')
         elif password != confirm_password:
             flash('Passwords must match', category='error')
-        elif len(password) < 4:
-            flash('Password must be greater than 3 characters', category='error')
+        elif not re.search(password_regex, password):
+            flash('Password must be at least 8 characters and contain at least one uppercase, one number and one special character', category='error')
         else:
             # Add User
             new_user = User(email_address = email, first_name = first_name, surname = surname, password = generate_password_hash(password, method='sha256'), is_active = True, is_admin = False)

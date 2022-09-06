@@ -6,7 +6,7 @@ Admin - View Users
 <div class='row marginGap'>
     <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
         <h2>User List</h2>
-        <table class="table">
+        <table id="user-table" class="table">
             <thead>
                 <tr>
                     <th scope="col">First Name</th>
@@ -41,10 +41,10 @@ Admin - View Users
                         </td>
                         <td>
                             <button type="button" onClick="unlockLockUser({{u.id}})"> 
-                                <span aria-hidden="true"><i class="fa-solid fa-lock" title="Unlock or lock a user"></i></span>
+                                <span aria-hidden="true"><i id="unlock-lock-user" class="fa-solid fa-lock" title="Unlock or lock a user"></i></span>
                             </button>
                             <button type="button" onClick="deleteUser({{u.id}})"> 
-                                <span aria-hidden="true"><i class="fa-solid fa-trash" title="Delete user"></i></span>
+                                <span aria-hidden="true"><i id="delete-user" class="fa-solid fa-trash" title="Delete user"></i></span>
                             </button>
                         </td>   
                     </tr>

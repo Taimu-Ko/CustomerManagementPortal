@@ -3,7 +3,7 @@
 <div class='row marginGap'>
     <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
         <h2>Invoice List</h2>
-        <table class="table">
+        <table id="invoice-table" class="table">
             <thead>
                 <tr>
                     <th scope="col">Invoice Reference</th>
@@ -26,7 +26,7 @@
                         <td>{{i.payment_date}}</td>
                         <td>
                             <button type="button" onClick="viewInvoice({{i.id}})"> 
-                                <span aria-hidden="true"><i class="fa-solid fa-magnifying-glass" title="View invoice details"></i></span>
+                                <span aria-hidden="true"><i id="view-invoice" class="fa-solid fa-magnifying-glass" title="View invoice details"></i></span>
                             </button>
                         </td>   
                     </tr>

@@ -75,19 +75,18 @@ def add_card():
 
         if len(card_name) > 30:
             flash('Card name must be 30 characters or less', category='error')
-        if card_status != 'Pending':
+        elif card_status != 'Pending':
             flash('Card status must be \'Pending\' for new cards', category='error')
-        if card:
+        elif card:
             flash('Card number already exists', category='error')
         else:
             # Add Card
             new_card = Card(card_number = card_number, status = card_status, card_name = card_name, expiry_date = expiry_date, user_id = current_user.id)
             db.session.add(new_card)
             db.session.commit()
-            
-        flash('Card added', category='success')
-        return redirect(url_for('views.cards'))
-      
+            flash('Card added', category='success')
+            return redirect(url_for('views.cards'))
+        
     card_number = getAndCheckCardNumber(11)
         
     return render_template("card_info.html", user=current_user, newCard = 'Y', cardNumber = card_number)
@@ -137,9 +136,9 @@ def admin():
 def delete_user():
     user = json.loads(request.data)
     userId = user['userId']
-    user = User.query.get(userId).first()
+    delete_user = User.query.get(userId)
     
-    if user:
+    if delete_user:
         if current_user.is_admin:
             # Delete Invoice and Invoice Line Items
             invoices = Invoice.query.filter_by(user_id = userId).all()
@@ -154,25 +153,24 @@ def delete_user():
             for c in cards:
                 db.session.delete(c)
             # Delete User
-            db.session.delete(user)
+            db.session.delete(delete_user)
             db.session.commit()
             flash('User deleted', category='success')
-        
-    return jsonify({})
+    return jsonify({})  
 
 @views.route('/admin/lock', methods = ['POST'])
 def lock_user():
     user = json.loads(request.data)
     userId = user['userId']
-    user = User.query.get(userId)
+    lock_user = User.query.get(userId)
     
-    if user:
+    if lock_user:
         if current_user.is_admin:
-            if user.is_active:
-                user.is_active = False
+            if lock_user.is_active:
+                lock_user.is_active = False
                 flash('User account unlocked', category='success')
             else:
-                user.is_active = True
+                lock_user.is_active = True
                 flash('User account locked', category='success')
             db.session.commit()
  
