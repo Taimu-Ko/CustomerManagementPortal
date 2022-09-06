@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}
+{% if card and canEdit == 'Y' %}
+Edit Card
+{% elif card and canEdit == 'N' %}
+View Card
+{% elif nwCard == 'Y' %}
+Add Card
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class='row marginGap'>
+    <div class='col-xs-12 col-sm-12 col-md-8 col-lg-8'>
+        {% if card and canEdit == 'N' %}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                    <label for="cardNumber">Card Number</label>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" value="{{card.card_number}}" readonly=true/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                    <label for="cardName">Card Name</label>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                    <input type="text" class="form-control" id="cardName" name="cardName" value="{{card.card_name}}" readonly=true />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                    <label for="status">Card Status</label>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                    <input type="status" class="form-control" id="status" name="status" value="{{card.status}}" readonly=true />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                    <label for="expiryDate">Expiry Date</label>      
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                    <input type="date" class="form-control" id="expiryDate" name="expiryDate" value="{{card.expiry_date}}" readonly=true />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <button type="button" class="btn btn-primary" onClick="editCard({{card.id}}, 'Y')">Edit</button>
+                </div>
+            </div>  
+        </div>
+        {% elif card and canEdit == 'Y' %}
+        <form method="POST">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                        <label for="cardNumber">Card Number</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" value="{{card.card_number}}" readonly=true/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                        <label for="cardName">Card Name</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                        <input type="text" class="form-control" id="cardName" name="cardName" value="{{card.card_name}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                        <label for="status">Card Status</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                        <input type="status" class="form-control" id="status" name="status" value="{{card.status}}" readonly=true />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                        <label for="expiryDate">Expiry Date</label>      
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                        <input type="date" class="form-control" id="expiryDate" name="expiryDate" value="{{card.expiry_date}}" readonly=true />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>  
+            </div>
+        </form>  
+        {% elif newCard == 'Y' %}
+        <form method="POST">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                        <label for="cardNumber">Card Number</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" value="{{cardNumber}}" readonly=true/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                        <label for="cardName">Card Name</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                        <input type="text" class="form-control" id="cardName" name="cardName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                        <label for="status">Card Status</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                        <input type="status" class="form-control" id="status" name="status" value="Pending" readonly=true />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>  
+            </div>
+        </form>  
+        {% endif %}  
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <a href='/cards'><button type="button" class="btn btn-primary">Back to card list</button></a>
+    </div>
+</div>  
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}
+View Cards
+{% endblock %}
+{% block content %}
+<div class='row marginGap'>
+    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+        <h2>Card List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Card Number</th>
+                    <th scope="col">Card Name</th>
+                    <th scope="col">Card Status</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Last Updated On</th>
+                    <th scope="col">Card Actions</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for c in user.cards %}
+                    <tr id="cards">
+                        <td>{{c.card_number}}</td>
+                        <td>{{c.card_name}}</td>
+                        <td>{{c.status}}</td>
+                        <td>{{c.expiry_date}}</td>
+                        <td>{% if c.last_updated != None %}
+                                {{c.last_updated}}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button type="button" onClick="viewCard({{c.id}}, 'N')"> 
+                                <span aria-hidden="true"><i class="fa-solid fa-magnifying-glass" title="View card details"></i></span>
+                            </button>
+                            <button type="button" onClick="deleteCard({{c.id}})"> 
+                                <span aria-hidden="true"><i class="fa-solid fa-trash" title="Delete card"></i></span>
+                            </button>
+                        </td>   
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <button type="button" class="btn btn-primary" onClick="addCard()">Add new card</button>
+    </div>
+</div>  
+{% endblock %}

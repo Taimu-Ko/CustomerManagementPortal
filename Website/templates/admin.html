@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}
+Admin - View Users
+{% endblock %}
+{% block content %}
+<div class='row marginGap'>
+    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+        <h2>User List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">Is Active</th>
+                    <th scope="col">Is Admin</th>
+                    <th scope="col">Admin Actions</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for u in users %}
+                    <tr id="users">
+                        <td>{{u.first_name}}</td>
+                        <td>{{u.surname}}</td>
+                        <td>{{u.email_address}}</td>
+                        <td>{{u.last_updated}}</td>
+                        <td>
+                            {% if u.is_active %}
+                                Active
+                            {% else %}
+                                Locked
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if u.is_admin %}
+                                Admin User
+                            {% else %}
+                                Normal User
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button type="button" onClick="unlockLockUser({{u.id}})"> 
+                                <span aria-hidden="true"><i class="fa-solid fa-lock" title="Unlock or lock a user"></i></span>
+                            </button>
+                            <button type="button" onClick="deleteUser({{u.id}})"> 
+                                <span aria-hidden="true"><i class="fa-solid fa-trash" title="Delete user"></i></span>
+                            </button>
+                        </td>   
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

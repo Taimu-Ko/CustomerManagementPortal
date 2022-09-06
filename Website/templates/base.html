@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <title>{% block title %}Insight Into Madness{% endblock %}</title>
+  <meta charset='utf-8'/>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
+  <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src="{{ url_for('static', filename='index.js')}}"></script>
+  <script src="https://kit.fontawesome.com/36c8cbaadc.js" crossorigin="anonymous"></script>
+  
+  <style type="text/css">
+	h2 {
+	 padding: 0 0 10px 0;
+	}
+
+  .fluid-container {
+    background-attachment: fixed;
+    background-image: url("{{ url_for('static', filename='website-bg.jpg')}}"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  </style>
+  
+</head>
+<body>
+<!--Header NavBar-->
+<div class='container'>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <p class="navbar-brand">Insight Into Madness</p>
+        </div>
+        <div class="collapse navbar-collapse" id='myNavbar'>
+        <ul class="nav navbar-nav">
+          {% if user.is_authenticated %}
+            <li><a href="/">Home</a></li>
+            <li>
+              <a class='dropdown-toggle' data-toggle='dropdown' href="#">Cards<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="/cards">View Cards</a></li>
+                  <li><a href="/cards/add">Add Card</a></li>
+              </ul>
+            </li>
+            <li><a href='/invoices'>Invoices</a></li>
+            {% if user.is_admin %}
+            <li>
+              <a class='dropdown-toggle' data-toggle='dropdown' href="#">Admin<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="/admin">View Users</a></li>
+              </ul>
+            </li>
+            {% endif %}
+            <li><a href='/logout'>Logout</a></li>
+          {% else %}
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/login">Login</a></li>
+          {% endif %} 
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<!--End of Header-->
+<!--Main Body-->
+<div class='fluid-container'>
+  <div class='container pageContent'>
+    <!-- Error or Success Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for c, m in messages %}
+          {% if c == 'error' %}
+            <div class="alert alert-danger alter-dismissable show" role="alert">
+              {{ m }}
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>        
+          {% elif c == 'success' %}
+            <div class="alert alert-success alter-dismissable show" role="alert">
+              {{ m }}
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>  
+          {% endif %}
+          
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <!-- End of Error or Success Messages -->
+    <div class='row marginGap'>
+      <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+        <h1> Insight Into Madness </h1>
+      </div>
+    </div>
+    {% block content %}
+    <div class='row marginGap'>
+      <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+        <p>Hello and welcome to my website/portfolio. This is a collection of opinion-based blogs and art work as well as news about any current, future or past projects I have worked on which I wish to share. I am also contactable for freelance work for website design and graphic design. I hope you enjoy your visit and please leave a comment either on any of the content of the site or anything else you wish to ask or say.</p>
+        <p style='color: #0CF; margin-top: 1em;'> I hope you enjoy your insight into my madness.</span></p>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
+<!--End of Header & First Paragraph-->
+</body>
+</html>

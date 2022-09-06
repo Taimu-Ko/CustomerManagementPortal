@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='row marginGap'>
+    <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+        <h2>Invoice List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Invoice Reference</th>
+                    <th scope="col">Invoice Date</th>
+                    <th scope="col">Net Amount</th>
+                    <th scope="col">VAT Amount</th>
+                    <th scope="col">Gross Amount</th>          
+                    <th scope="col">Payment Due</th>
+                    <th scope="col">Invoice Actions</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for i in user.invoices %}
+                    <tr id="cards">
+                        <td>{{i.invoice_reference}}</td>
+                        <td>{{i.invoice_date}}</td>
+                        <td>£{{i.net_amount}}</td>
+                        <td>£{{i.vat_amount}}</td>
+                        <td>£{{i.gross_amount}}</td>
+                        <td>{{i.payment_date}}</td>
+                        <td>
+                            <button type="button" onClick="viewInvoice({{i.id}})"> 
+                                <span aria-hidden="true"><i class="fa-solid fa-magnifying-glass" title="View invoice details"></i></span>
+                            </button>
+                        </td>   
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
