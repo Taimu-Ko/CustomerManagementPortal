@@ -14,7 +14,10 @@ V1.0.1:
 Removed Lorem Ipsum Text for text taken from company website.
 Added user account lock from failed login attempts
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+V1.0.2
+Added unit tests for all functionality
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Login Information:
 Admin User: rcbrown94@outlook.com
 Admin Password: P@ssw0rd12
