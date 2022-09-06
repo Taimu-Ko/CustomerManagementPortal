@@ -7,7 +7,9 @@ Includes Admin functionality for user management as well as forced time outs for
 V1.0:
 Dockerized application
 Create and run local docker images of application using these commands:
+
 docker build -t "name-of-image" .
+
 docker run -d -p 5000:5000 "name-of-image"
 
 V1.0.1:
@@ -17,7 +19,9 @@ Added user account lock from failed login attempts
 V1.0.2
 Added unit tests for all functionality
 Test commands:
+
 cd .\Tests\
+
 python -m unittest discover
 
 Unit tests only work with fresh version of database
