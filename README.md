@@ -19,6 +19,7 @@ docker run -d -p 5000:5000 "name-of-image"
 V1.0.1:
 ------------------------------------------------------------
 Removed Lorem Ipsum Text for text taken from company website.
+
 Added user account lock from failed login attempts
 
 V1.0.2:
