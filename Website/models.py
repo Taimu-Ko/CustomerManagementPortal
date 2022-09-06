@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     is_active = db.Column(db.Boolean)
     is_admin = db.Column(db.Boolean)
     last_updated = db.Column(db.DateTime(timezone=False), default=func.now(), onupdate=func.now())
+    failed_login_attempts = db.Column(db.Integer, default=0)
     
 class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)

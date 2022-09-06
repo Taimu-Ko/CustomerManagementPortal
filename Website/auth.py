@@ -3,6 +3,8 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from sqlalchemy.sql import func
+from datetime import timedelta
 
 auth = Blueprint('auth', __name__)
 
@@ -14,15 +16,26 @@ def login():
         
         user = User.query.filter_by(email_address=email).first()
         if user:
-            if user.is_active:
-                if check_password_hash(user.password, password):
-                    flash('Logged in successfully', category='success')
-                    login_user(user)
-                    #session.permanent = True
-                    return redirect(url_for('views.home'))
+            if user.failed_login_attempts < 3:
+                if user.is_active:
+                    if check_password_hash(user.password, password):
+                        flash('Logged in successfully', category='success')
+                        login_user(user)
+                        user.failed_login_attempts = 0
+                        db.session.commit()
+                        #session.permanent = True
+                        return redirect(url_for('views.home'))
+                    else:
+                        user.failed_login_attempts = user.failed_login_attempts + 1
+                        db.session.commit()
+                        flash('Your username or password is incorrect.', category='error')
                 else:
-                    flash('Your email or password is incorrect. Please try again', category='error')
-            flash('Unable to log in. Your account is locked', category='error')
+                    flash('Unable to log in. Your account is locked', category='error')
+            else:
+                user.is_active = False
+                user.failed_login_attempts = 0
+                db.session.commit()
+                flash('Your account has been locked due to multiple failed login attempts. Please contact your administrator.', category='error')
         else:
             flash('Your email or password is incorrect. Please try again', category='error')
     
