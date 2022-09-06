@@ -16,7 +16,11 @@ Added user account lock from failed login attempts
 
 V1.0.2
 Added unit tests for all functionality
+Test commands:
+cd .\Tests\
+python -m unittest discover
 
+Unit tests only work with fresh version of database
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Login Information:
 Admin User: rcbrown94@outlook.com
