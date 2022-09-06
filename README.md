@@ -21,6 +21,7 @@ cd .\Tests\
 python -m unittest discover
 
 Unit tests only work with fresh version of database
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Login Information:
 Admin User: rcbrown94@outlook.com
