@@ -45,3 +45,6 @@ Admin Password: P@ssw0rd12
 Normal User: kitsunegrimm1@gmail.com
 
 Normal Password: P@ssw0rd12
+
+[DatabaseScripts.txt](https://github.com/Taimu-Ko/CustomerManagementPortal/files/9506315/DatabaseScripts.txt)
+
