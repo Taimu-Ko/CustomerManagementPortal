@@ -54,6 +54,10 @@ Added Content Security Policy
 
 Created local versions of CDN CSS and JS files
 
+V1.0.6:
+------------------------------------------------------------
+Addied logging
+
 Useful Information
 -------------------------------------------------------------
 Login Information:
