@@ -40,7 +40,13 @@ Updated tests
 
 V1.0.4:
 ------------------------------------------------------------
-Final release - fresh database with test accounts implemented
+Fresh database with test accounts implemented and updated metadata
+
+V1.0.5:
+------------------------------------------------------------
+Added confirmation popup for delete and lock/unlock actions
+
+Ammended unit tests for popup confirmation
 
 Useful Information
 -------------------------------------------------------------
