@@ -48,6 +48,12 @@ Added confirmation popup for delete and lock/unlock actions
 
 Ammended unit tests for popup confirmation
 
+V1.0.6:
+------------------------------------------------------------
+Added Content Security Policy
+
+Created local versions of CDN CSS and JS files
+
 Useful Information
 -------------------------------------------------------------
 Login Information:
