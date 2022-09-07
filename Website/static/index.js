@@ -1,10 +1,12 @@
 function deleteCard(cardId) {
-    fetch('/cards/delete', {
-        method: 'POST',
-        body: JSON.stringify({cardId: cardId}),
-    }).then((_res) => {
-        window.location.href = "/cards";
-    });
+    if(confirm("Are you sure you want to delete this card?")) {
+        fetch('/cards/delete', {
+            method: 'POST',
+            body: JSON.stringify({cardId: cardId}),
+        }).then((_res) => {
+            window.location.href = "/cards";
+        });
+    }
 }
 
 function viewCard(cardId, edit) {
@@ -32,19 +34,23 @@ function viewInvoice(id) {
 }
 
 function deleteUser(userId) {
-    fetch('/admin/delete', {
-        method: 'POST',
-        body: JSON.stringify({userId: userId}),
-    }).then((_res) => {
-        window.location.href = "/admin";
-    });
+    if(confirm("Are you sure you want to delete this user?")) {
+        fetch('/admin/delete', {
+            method: 'POST',
+            body: JSON.stringify({userId: userId}),
+        }).then((_res) => {
+            window.location.href = "/admin";
+        });
+    }   
 }
 
 function unlockLockUser(userId) {
-    fetch('/admin/lock', {
-        method: 'POST',
-        body: JSON.stringify({userId: userId}),
-    }).then((_res) => {
-        window.location.href = "/admin";
-    });
+    if(confirm("Are you sure you want to unlock/lock this user?")) {
+        fetch('/admin/lock', {
+            method: 'POST',
+            body: JSON.stringify({userId: userId}),
+        }).then((_res) => {
+            window.location.href = "/admin";
+        });
+    }     
 }

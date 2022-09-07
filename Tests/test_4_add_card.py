@@ -1,12 +1,13 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from unittest import TestCase  
 
 class TestAddCard(TestCase):
     def setUp(self):    
-        PATH = 'C:\Selenium\chromedriver.exe'
-        self._driver = webdriver.Chrome(PATH)    
+        self._driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))  
         self._driver.implicitly_wait(10)    
         valid_email = 'rcbrown94@outlook.com'
         valid_password = 'P@ssw0rd12'
