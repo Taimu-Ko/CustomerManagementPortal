@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for, current_app
 from flask_login import login_required, current_user
 from .models import Card, Invoice, InvoiceLineItem, User
 from . import db
@@ -33,9 +33,9 @@ def view_card(id, canEdit):
             return render_template("card_info.html", user=current_user, card=card, canEdit=canEdit)
         else:
             flash('Card does not exist', category='error')
+            current_app.logger.warning('User tried tried to view a card that doesnt exist or doesnt belong to them.')
             return redirect(url_for('views.cards'))
-            
-        
+                  
     if request.method == 'POST':
         card = Card.query.filter_by(id=id).first()
         if card:
@@ -45,21 +45,10 @@ def view_card(id, canEdit):
                 card.card_name = card_name
                 db.session.commit()
                 flash('Successfully updated card details', category='success')
+                current_app.logger.info('User successfully updated a card.')
                 
                 return redirect(url_for('views.cards'))
-        else:
-            card_number = request.form.get('cardNumber')
-            card_name = request.form.get('cardName')
-            card_status = request.form.get('status')
-            card_expiry_date = request.form.get('expiryDate')
-            new_card = Card(card_number = card_number, status = card_status, card_name = card_name, creation_date = func.now(), expiry_date = card_expiry_date, last_updated = func.now(), user_id = current_user.id)
-            
-            db.session.add(new_card)
-            db.session.commit()
-            flash('Successfully added new card', category='success')
-                
-            return redirect(url_for('views.cards'))
-        
+       
     return render_template("card_info.html", user=current_user, card=card, canEdit=canEdit)
 
 @views.route('/cards/add', methods=['GET', 'POST'])
@@ -75,16 +64,20 @@ def add_card():
 
         if len(card_name) > 30:
             flash('Card name must be 30 characters or less', category='error')
+            current_app.logger.warning('User supplied invalid card name.')
         elif card_status != 'Pending':
             flash('Card status must be \'Pending\' for new cards', category='error')
+            current_app.logger.warning('User supplied incorrect card status.')
         elif card:
             flash('Card number already exists', category='error')
+            current_app.logger.warning('User supplied incorrect card number.')
         else:
             # Add Card
             new_card = Card(card_number = card_number, status = card_status, card_name = card_name, expiry_date = expiry_date, user_id = current_user.id)
             db.session.add(new_card)
             db.session.commit()
             flash('Card added', category='success')
+            current_app.logger.warning('User successfully added a new card.')
             return redirect(url_for('views.cards'))
         
     card_number = getAndCheckCardNumber(11)
@@ -102,6 +95,7 @@ def delete_card():
             db.session.delete(card)
             db.session.commit()
             flash('Card deleted', category='success')
+            current_app.logger.info('User successfully deleted a card.')
         
     return jsonify({})
 #endregion
@@ -120,6 +114,7 @@ def view_invoice(id):
         if invoice:
             if invoice.user_id != current_user.id:
                 flash("Invoice does not exist", category="error")
+                current_app.logger.warning('User tried to view an invoice that doesnt exist or doesnt belong to them.')
                 return redirect(url_for('views.invoices'))          
         
             return render_template("invoice_info.html", user=current_user, invoice=invoice)
@@ -129,8 +124,11 @@ def view_invoice(id):
 @views.route('/admin')
 @login_required
 def admin():
-    users = User.query.all()
-    return render_template("admin.html", user=current_user, users=users)
+    logged_in_user = User.query.get(current_user.id)
+    if(logged_in_user.is_admin):
+        users = User.query.all()
+        return render_template("admin.html", user=current_user, users=users)
+    return redirect(url_for('views.home'))
 
 @views.route('/admin/delete', methods = ['POST'])
 def delete_user():
@@ -156,6 +154,7 @@ def delete_user():
             db.session.delete(delete_user)
             db.session.commit()
             flash('User deleted', category='success')
+            current_app.logger.info('All users data has been deleted.')
     return jsonify({})  
 
 @views.route('/admin/lock', methods = ['POST'])
@@ -169,9 +168,11 @@ def lock_user():
             if lock_user.is_active:
                 lock_user.is_active = False
                 flash('User account unlocked', category='success')
+                current_app.logger.info('User has been unlocked.')
             else:
                 lock_user.is_active = True
                 flash('User account locked', category='success')
+                current_app.logger.info('User has been locked.')
             db.session.commit()
  
     return jsonify({})

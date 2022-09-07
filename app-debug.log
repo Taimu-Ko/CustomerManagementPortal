@@ -1,0 +1,57 @@
+2022-09-07 17:09:16,734 INFO :  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+2022-09-07 17:09:16,736 INFO :  * Restarting with stat
+2022-09-07 17:09:17,324 WARNING :  * Debugger is active!
+2022-09-07 17:09:17,331 INFO :  * Debugger PIN: 101-822-931
+2022-09-07 17:09:20,089 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "GET /cards HTTP/1.1" 200 -
+2022-09-07 17:09:20,361 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "[36mGET /static/bootstrap.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:09:20,363 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "[36mGET /static/jquery.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:09:20,365 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "[36mGET /static/index.js HTTP/1.1[0m" 304 -
+2022-09-07 17:09:20,369 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-09-07 17:09:20,370 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "[36mGET /static/bootstrap.min.css HTTP/1.1[0m" 304 -
+2022-09-07 17:09:20,397 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "[36mGET /static/website-bg.jpg HTTP/1.1[0m" 304 -
+2022-09-07 17:09:20,407 INFO : 127.0.0.1 - - [07/Sep/2022 17:09:20] "[33mGET /static/bootstrap.min.css.map HTTP/1.1[0m" 404 -
+2022-09-07 17:56:34,102 INFO :  * Detected change in 'c:\\Users\\RCBro\\source\\repos\\CustomerManagementPortal\\Website\\auth.py', reloading
+2022-09-07 17:56:34,193 INFO :  * Restarting with stat
+2022-09-07 17:56:35,076 WARNING :  * Debugger is active!
+2022-09-07 17:56:35,086 INFO :  * Debugger PIN: 101-822-931
+2022-09-07 17:57:29,729 INFO :  * Detected change in 'c:\\Users\\RCBro\\source\\repos\\CustomerManagementPortal\\app.py', reloading
+2022-09-07 17:57:29,790 INFO :  * Restarting with stat
+2022-09-07 17:57:30,398 WARNING :  * Debugger is active!
+2022-09-07 17:57:30,408 INFO :  * Debugger PIN: 101-822-931
+2022-09-07 17:58:00,805 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:00] "[32mGET /cards HTTP/1.1[0m" 302 -
+2022-09-07 17:58:00,836 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:00] "GET /login?next=%2Fcards HTTP/1.1" 200 -
+2022-09-07 17:58:01,177 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:01] "[36mGET /static/bootstrap.min.css HTTP/1.1[0m" 304 -
+2022-09-07 17:58:01,180 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-09-07 17:58:01,188 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:01] "[36mGET /static/index.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:01,196 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:01] "[36mGET /static/jquery.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:01,202 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:01] "[36mGET /static/bootstrap.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:01,217 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:01] "[36mGET /static/website-bg.jpg HTTP/1.1[0m" 304 -
+2022-09-07 17:58:01,239 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:01] "[33mGET /static/bootstrap.min.css.map HTTP/1.1[0m" 404 -
+2022-09-07 17:58:05,955 INFO : Logged in successfully.
+2022-09-07 17:58:05,957 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:05] "[32mPOST /login?next=%2Fcards HTTP/1.1[0m" 302 -
+2022-09-07 17:58:05,970 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:05] "GET / HTTP/1.1" 200 -
+2022-09-07 17:58:06,048 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:06] "[36mGET /static/bootstrap.min.css HTTP/1.1[0m" 304 -
+2022-09-07 17:58:06,050 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-09-07 17:58:06,055 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:06] "[36mGET /static/jquery.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:06,056 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:06] "[36mGET /static/bootstrap.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:06,057 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:06] "[36mGET /static/index.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:06,113 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:06] "[36mGET /static/website-bg.jpg HTTP/1.1[0m" 304 -
+2022-09-07 17:58:06,125 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:06] "[33mGET /static/bootstrap.min.css.map HTTP/1.1[0m" 404 -
+2022-09-07 17:58:08,278 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "GET /cards HTTP/1.1" 200 -
+2022-09-07 17:58:08,318 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "[36mGET /static/bootstrap.min.css HTTP/1.1[0m" 304 -
+2022-09-07 17:58:08,321 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-09-07 17:58:08,322 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "[36mGET /static/jquery.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:08,325 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "[36mGET /static/bootstrap.min.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:08,327 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "[36mGET /static/index.js HTTP/1.1[0m" 304 -
+2022-09-07 17:58:08,380 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "[36mGET /static/website-bg.jpg HTTP/1.1[0m" 304 -
+2022-09-07 17:58:08,394 INFO : 127.0.0.1 - - [07/Sep/2022 17:58:08] "[33mGET /static/bootstrap.min.css.map HTTP/1.1[0m" 404 -
+2022-09-07 18:00:29,453 INFO :  * Detected change in 'c:\\Users\\RCBro\\source\\repos\\CustomerManagementPortal\\Website\\auth.py', reloading
+2022-09-07 18:00:29,529 INFO :  * Restarting with stat
+2022-09-07 18:00:30,166 WARNING :  * Debugger is active!
+2022-09-07 18:00:30,174 INFO :  * Debugger PIN: 101-822-931
+2022-09-07 18:00:38,299 INFO :  * Detected change in 'c:\\Users\\RCBro\\source\\repos\\CustomerManagementPortal\\Website\\auth.py', reloading
+2022-09-07 18:00:38,362 INFO :  * Restarting with stat
+2022-09-07 18:00:39,076 WARNING :  * Debugger is active!
+2022-09-07 18:00:39,084 INFO :  * Debugger PIN: 101-822-931
+2022-09-07 18:07:31,115 INFO :  * Detected change in 'c:\\Users\\RCBro\\source\\repos\\CustomerManagementPortal\\Website\\views.py', reloading
+2022-09-07 18:07:31,177 INFO :  * Restarting with stat

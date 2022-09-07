@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager, current_user
 from datetime import timedelta
+import logging
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -14,13 +15,15 @@ def create_app():
     app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=10)
     db.init_app(app)
     
+    logging.basicConfig(filename='app-debug.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s : %(message)s')
+    
     from .views import views
     from .auth import auth
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
-    from .models import User#, Note
+    from .models import User
     
     create_database(app)
     
@@ -41,7 +44,7 @@ def create_app():
     
     @app.after_request
     def add_Security_headers(response):
-        response.headers['Content-Security-Policy']='default-src \'self\''
+        response.headers['Content-Security-Policy']='default-src \'self\'; style-src \'self\' https://fonts.googleapis.com \'unsafe-inline\'; font-src \'self\' https://ka-f.fontawesome.com; script-src \'self\' \'unsafe-inline\' https://kit.fontawesome.com; object-src \'self\'; connect-src \'self\' https://ka-f.fontawesome.com'
         return response
     
     return app
