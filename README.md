@@ -34,6 +34,14 @@ python -m unittest discover
 
 Unit tests only work with fresh version of database
 
+V1.0.3:
+------------------------------------------------------------
+Updated tests
+
+V1.0.4:
+------------------------------------------------------------
+Final release - fresh database with test accounts implemented
+
 Useful Information
 -------------------------------------------------------------
 Login Information:
