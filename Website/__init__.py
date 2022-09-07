@@ -39,6 +39,11 @@ def create_app():
         session.modified = True
         g.user = current_user
     
+    @app.after_request
+    def add_Security_headers(response):
+        response.headers['Content-Security-Policy']='default-src \'self\''
+        return response
+    
     return app
 
 def create_database(app):
