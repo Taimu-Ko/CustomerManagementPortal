@@ -85,6 +85,7 @@ def add_card():
     return render_template("card_info.html", user=current_user, newCard = 'Y', cardNumber = card_number)
 
 @views.route('/cards/delete', methods = ['POST'])
+@login_required
 def delete_card():
     card = json.loads(request.data)
     cardId = card['cardId']
@@ -131,6 +132,7 @@ def admin():
     return redirect(url_for('views.home'))
 
 @views.route('/admin/delete', methods = ['POST'])
+@login_required
 def delete_user():
     user = json.loads(request.data)
     userId = user['userId']
@@ -158,6 +160,7 @@ def delete_user():
     return jsonify({})  
 
 @views.route('/admin/lock', methods = ['POST'])
+@login_required
 def lock_user():
     user = json.loads(request.data)
     userId = user['userId']
