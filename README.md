@@ -56,6 +56,10 @@ Created local versions of CDN CSS and JS files
 
 Addied logging
 
+V1.0.7:
+------------------------------------------------------------
+Added Code Coverage and updated requirements.txt
+
 Useful Information
 -------------------------------------------------------------
 Login Information:
